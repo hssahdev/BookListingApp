@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -41,7 +43,8 @@ public class BookAdapter extends ArrayAdapter<Book>{
 
 
         ImageView booksImage=listView.findViewById(R.id.bookImage);
-        booksImage.setImageBitmap(currentbook.getImage());
+        Picasso.get().load(currentbook.getImageURL()).into(booksImage);
+
 
         final Button infoButton=listView.findViewById(R.id.getInfoButton);
         infoButton.setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,5 @@
 package com.harshdeep.android.booklistingapp;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by harshdeepsingh on 20/12/17.
  */
@@ -9,7 +7,7 @@ import android.graphics.Bitmap;
 public class Book {
     private String author;
     private String name;
-    private Bitmap image;
+    private String imageURL;
     private String getInfoURL;
 
     public Book(String author, String name) {
@@ -17,17 +15,17 @@ public class Book {
         this.name = name;
     }
 
-    public Book(String author, String name, Bitmap image) {
+    public Book(String author, String name, String image) {
         this.author = author;
         this.name = name;
-        this.image = image;
+        this.imageURL = image;
 
     }
 
-    public Book(String author, String name, Bitmap imageURL, String getInfoURL) {
+    public Book(String author, String name, String imageURL, String getInfoURL) {
         this.author = author;
         this.name = name;
-        this.image = imageURL;
+        this.imageURL = imageURL;
         this.getInfoURL = getInfoURL;
 
     }
@@ -40,8 +38,8 @@ public class Book {
         return name;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public String getImageURL() {
+        return imageURL;
     }
 
     public String getGetInfoURL() {
