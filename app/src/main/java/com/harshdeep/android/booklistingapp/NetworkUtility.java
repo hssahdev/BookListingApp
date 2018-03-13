@@ -1,7 +1,5 @@
 package com.harshdeep.android.booklistingapp;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -123,26 +121,13 @@ public class NetworkUtility {
                 }
                 //Send http request to get image bitmap
 
-                String rawImageURL=VolumeInfo.getJSONObject("imageLinks").getString("smallThumbnail");
-                URL imageURL=createURL(rawImageURL);
-                HttpURLConnection connection=(HttpURLConnection)imageURL.openConnection();
-                connection.setRequestMethod("GET");
-                connection.setReadTimeout(2000);
-                connection.connect();
-                InputStream input = connection.getInputStream();
-                Bitmap myBitmap = BitmapFactory.decodeStream(input);
-
-                if(connection!=null)
-                    connection.disconnect();
-
-                if(input!=null)
-                    input.close();
+                String imageURL=VolumeInfo.getJSONObject("imageLinks").getString("smallThumbnail");
 
                 // Info links
 
                 String bookURL =VolumeInfo.getString("infoLink");
 
-                bookArrayList.add(new Book(finalAuthors,BookTitle,myBitmap,bookURL));
+                bookArrayList.add(new Book(finalAuthors,BookTitle,imageURL,bookURL));
 
                 Log.v("Var",finalAuthors+" Title: "+BookTitle +" URL: "+bookURL);
             }
@@ -150,8 +135,6 @@ public class NetworkUtility {
         } catch (JSONException e) {
             e.printStackTrace();
 
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return bookArrayList;
     }
